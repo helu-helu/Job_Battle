@@ -1,0 +1,5 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Image source="project://database/Assets/_Main/_Level/Art/Joystick.png?fileID=2800000&amp;guid=ea1f9a1fbf6f9f047b5c99e4b0c19dbd&amp;type=3#Joystick" name="joystickBackground" picking-mode="Position" enabled="true" style="justify-content: center; align-items: center; align-self: center; align-content: center; overflow: visible; position: absolute; top: 1986px; left: 502px; width: 200px; height: 200px;">
+        <ui:Image name="joystickHandle" source="project://database/Assets/_Main/_Level/Art/LargeHandleFilledGrey.png?fileID=2800000&amp;guid=115b69d37987e304eb2b3f4b0464882a&amp;type=3#LargeHandleFilledGrey" style="position: absolute; align-items: center; justify-content: center; align-self: center; align-content: center; height: 150px; width: 150px;"/>
+    </ui:Image>
+</ui:UXML>

@@ -1,0 +1,7 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="joystickPanel" style="flex-grow: 1;">
+        <ui:VisualElement name="joystickBackground" enabled="true" style="flex-grow: 1; position: absolute; align-items: center; justify-content: center; align-self: center; align-content: center; background-image: url(&quot;project://database/Assets/_Main/_Level/Art/Joystick.png?fileID=2800000&amp;guid=ea1f9a1fbf6f9f047b5c99e4b0c19dbd&amp;type=3#Joystick&quot;); width: 150px; height: 150px; top: -50px; left: -50px; display: none; right: auto;">
+            <ui:VisualElement name="joystickHandle" style="flex-grow: 1; width: 100px; height: 100px; background-image: url(&quot;project://database/Assets/_Main/_Level/Art/LargeHandleFilledGrey.png?fileID=2800000&amp;guid=115b69d37987e304eb2b3f4b0464882a&amp;type=3#LargeHandleFilledGrey&quot;); align-items: center; justify-content: center; align-self: center; align-content: center; position: absolute; top: auto; left: auto; display: flex;"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
