@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 956d18120171fcc4e8b9c99ae06d833b, type: 3}
+  m_Name: EnergyGemData
+  m_EditorClassIdentifier: Assembly-CSharp::EnergyGem
+  blueGemPrefab: {fileID: 3595154901016836101, guid: 05e180939d6966c4584c3cfe7227d645, type: 3}
+  redGemPrefab: {fileID: 4029912513681816488, guid: 1cdcb9592f706a3498e7b1803b6d84e5, type: 3}
+  greenGemPrefab: {fileID: 5968701094859877326, guid: 39c745293113ed448a76e7dfbadd52d7, type: 3}
