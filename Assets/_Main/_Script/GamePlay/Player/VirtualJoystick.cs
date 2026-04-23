@@ -7,106 +7,106 @@ using UnityEngine.InputSystem.LowLevel;
 public class VirtualJoystick : MonoBehaviour
 {
     [SerializeField] private InputActionAsset _inputActions;
-    private InputAction _moveAction;
-    private VisualElement _joystickPanel;
-    private VisualElement _joystickBackground;
-    private VisualElement _joystickHandle;
+    private InputAction moveAction;
+    private VisualElement joystickPanel;
+    private VisualElement joystickBackground;
+    private VisualElement joystickHandle;
     //Vị trí Joystick Backgroud được sử dụng
-    private Vector2 _touchStartPos;
+    private Vector2 touchStartPos;
     //Biến kiểm tra trạng thái kéo thả
-    private bool _isDragging;
+    private bool isDragging;
     //Bán kính tối đa của Joystick
-    private float _maxRadius;
-    private Vector2 _direction;
-    private Vector2 _normalizedDirection;
-    private Vector2 _currentTouchPos;
-    private Joystick _joystick;
+    private float maxRadius;
+    private Vector2 direction;
+    private Vector2 normalizedDirection;
+    private Vector2 currentTouchPos;
+    private Joystick joystick;
     void Awake()
     {
         var uiDocument = GetComponent<UIDocument>();
         var root = uiDocument.rootVisualElement;
 
-        _joystickPanel = root.Q<VisualElement>("joystickPanel");
-        _joystickBackground = _joystickPanel.Q<VisualElement>("joystickBackground");
-        _joystickHandle = _joystickPanel.Q<VisualElement>("joystickHandle");
+        joystickPanel = root.Q<VisualElement>("joystickPanel");
+        joystickBackground = joystickPanel.Q<VisualElement>("joystickBackground");
+        joystickHandle = joystickPanel.Q<VisualElement>("joystickHandle");
 
-        _joystickBackground.style.display = DisplayStyle.None;
+        joystickBackground.style.display = DisplayStyle.None;
 
-        _joystickBackground.RegisterCallback<GeometryChangedEvent>(OnJoystickGeometryChanged);
+        joystickBackground.RegisterCallback<GeometryChangedEvent>(OnJoystickGeometryChanged);
 
-        _moveAction = _inputActions.FindAction("Player/Move");
+        moveAction = _inputActions.FindAction("Player/Move");
     }
     void Start()
     {
-        _joystickPanel.RegisterCallback<PointerDownEvent>(OnPointerDown);
-        _joystickPanel.RegisterCallback<PointerMoveEvent>(OnPointerMove);
-        _joystickPanel.RegisterCallback<PointerUpEvent>(OnPointerUp);
+        joystickPanel.RegisterCallback<PointerDownEvent>(OnPointerDown);
+        joystickPanel.RegisterCallback<PointerMoveEvent>(OnPointerMove);
+        joystickPanel.RegisterCallback<PointerUpEvent>(OnPointerUp);
 
     }
     private void OnJoystickGeometryChanged(GeometryChangedEvent evt)
     {
         // evt.newRect.width là kích thước chính xác sau layout
-        _maxRadius = evt.newRect.width * 0.5f;
+        maxRadius = evt.newRect.width * 0.5f;
 
         // chỉ cần 1 lần => hủy callback
-        _joystickBackground.UnregisterCallback<GeometryChangedEvent>(OnJoystickGeometryChanged);
+        joystickBackground.UnregisterCallback<GeometryChangedEvent>(OnJoystickGeometryChanged);
     }
     private void OnPointerDown(PointerDownEvent evt)
     {
-        _isDragging = true;
-        _touchStartPos = evt.localPosition;
+        isDragging = true;
+        touchStartPos = evt.localPosition;
         //Đặt vị trí Joystick về vị trí chạm
-        _joystickBackground.style.translate = _touchStartPos;
-        _joystickHandle.style.translate = _touchStartPos;
+        joystickBackground.style.translate = touchStartPos;
+        joystickHandle.style.translate = touchStartPos;
 
-        _joystickBackground.style.display = DisplayStyle.Flex;
+        joystickBackground.style.display = DisplayStyle.Flex;
     }
     private void OnPointerMove(PointerMoveEvent evt)
     {
-        if (!_isDragging) return;
+        if (!isDragging) return;
         // Debug.Log("Pointer Move at: " + evt.localPosition);
-        _currentTouchPos = evt.localPosition;
-        _direction = _currentTouchPos - _touchStartPos;
+        currentTouchPos = evt.localPosition;
+        direction = currentTouchPos - touchStartPos;
 
         // Hiển thị handle trong phạm vi
-        if (_direction.magnitude > _maxRadius)
+        if (direction.magnitude > maxRadius)
         {
-            _direction = _direction.normalized * _maxRadius;
+            direction = direction.normalized * maxRadius;
         }
 
-        _joystickHandle.style.translate = _direction;
+        joystickHandle.style.translate = direction;
 
-        _normalizedDirection.y = -_direction.y;
-        _normalizedDirection.x = _direction.x;
-        SendValueToInputSystem(_normalizedDirection);
+        normalizedDirection.y = -direction.y;
+        normalizedDirection.x = direction.x;
+        SendValueToInputSystem(normalizedDirection);
     }
     private void OnPointerUp(PointerUpEvent evt)
     {
 
-        if (!_isDragging) return;
-        _joystickBackground.style.display = DisplayStyle.None;
-        _isDragging = false;
-        _touchStartPos = Vector2.zero;
+        if (!isDragging) return;
+        joystickBackground.style.display = DisplayStyle.None;
+        isDragging = false;
+        touchStartPos = Vector2.zero;
         SendValueToInputSystem(Vector2.zero);
 
     }
     private void SendValueToInputSystem(Vector2 value)
     {
-        // Debug.Log("_joystickBackground.style.display: " + _joystickBackground.style.display);
-        _joystick = Joystick.current;
-        // Debug.Log("_joystick: " + (_joystick == null ? "null" : "found"));
-        if (_joystick == null)
+        // Debug.Log("joystickBackground.style.display: " + joystickBackground.style.display);
+        joystick = Joystick.current;
+        // Debug.Log("joystick: " + (joystick == null ? "null" : "found"));
+        if (joystick == null)
         {
             InputSystem.RegisterLayout<Joystick>();
-            _joystick = InputSystem.AddDevice<Joystick>();
-            InputSystem.QueueDeltaStateEvent(_joystick.stick, value);
-            // Debug.Log("Joystick Released. _joystick == null");
+            joystick = InputSystem.AddDevice<Joystick>();
+            InputSystem.QueueDeltaStateEvent(joystick.stick, value);
+            // Debug.Log("Joystick Released. joystick == null");
         }
         // InputSystem.Update(); 
-        if (_joystick != null)
+        if (joystick != null)
         {  
-            InputSystem.QueueDeltaStateEvent(_joystick.stick, value);
-            // Debug.Log("Joystick Released. _joystick != null");
+            InputSystem.QueueDeltaStateEvent(joystick.stick, value);
+            // Debug.Log("Joystick Released. joystick != null");
         }
     }
 }

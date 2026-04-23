@@ -1,5 +1,4 @@
 using System.Collections;
-using NUnit.Framework.Internal;
 using UnityEngine;
 
 public class RandomSpawner : MonoBehaviour
@@ -13,7 +12,7 @@ public class RandomSpawner : MonoBehaviour
     {
         EnergyGemController.OnGemCollected -= UpdateGemEnergyCount;
     }
-    private void UpdateGemEnergyCount()
+    private void UpdateGemEnergyCount(int gemType)
     {
         currentSpawnedGemCount -= 1;
     }
@@ -64,14 +63,14 @@ public class RandomSpawner : MonoBehaviour
         // Kiểm tra xem có tìm được vị trí hợp lệ không
         if (spawnPos != new Vector2(float.MaxValue, float.MaxValue))
         {
-            int randomGemType = Random.Range(0, 3); // 0: Blue, 1: Red, 2: Green
+            int randomGemType = Random.Range(0, 3); // 0: Red, 1: Blue, 2: Green
             switch (randomGemType)
             {
                 case 0:
-                    Instantiate(spawnGemData.blueGemPrefab, spawnPos, Quaternion.identity);
+                    Instantiate(spawnGemData.redGemPrefab, spawnPos, Quaternion.identity);
                     break;
                 case 1:
-                    Instantiate(spawnGemData.redGemPrefab, spawnPos, Quaternion.identity);
+                    Instantiate(spawnGemData.blueGemPrefab, spawnPos, Quaternion.identity);
                     break;
                 case 2:
                     Instantiate(spawnGemData.greenGemPrefab, spawnPos, Quaternion.identity);

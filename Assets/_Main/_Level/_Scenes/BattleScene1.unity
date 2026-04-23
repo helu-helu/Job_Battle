@@ -155,7 +155,7 @@ Camera:
   m_GameObject: {fileID: 23498873}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 4
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -180,7 +180,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 1
+  orthographic: 0
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
@@ -622,8 +622,8 @@ Transform:
   m_GameObject: {fileID: 762332548}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -928.079, y: -739.555, z: 10}
-  m_LocalScale: {x: 33.36638, y: 39.167194, z: 7.2710466}
+  m_LocalPosition: {x: -928.1346, y: -739.7498, z: 10}
+  m_LocalScale: {x: 12.435433, y: 24.414366, z: 7.2710466}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1548349450}
@@ -1050,6 +1050,7 @@ GameObject:
   - component: {fileID: 1651315999}
   - component: {fileID: 1651316001}
   - component: {fileID: 1651316000}
+  - component: {fileID: 1651316002}
   m_Layer: 0
   m_Name: UI
   m_TagString: Untagged
@@ -1108,6 +1109,18 @@ MonoBehaviour:
   m_PivotReferenceSize: 0
   m_Pivot: 0
   m_WorldSpaceCollider: {fileID: 0}
+--- !u!114 &1651316002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651315998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d941dbf1a973349419c8ffb905cf9678, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnergyGemStatus
 --- !u!1001 &2051538412965624087
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1164,7 +1177,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Unknown_One
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1310686058445174116, guid: 3cbf9497ca05ae54e94e24841dfa580f, type: 3}
+    - {fileID: 6548462776750884258, guid: 3cbf9497ca05ae54e94e24841dfa580f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

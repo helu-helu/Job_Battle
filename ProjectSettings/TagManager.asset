@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - Enermy
+  - RedEnergyGem
+  - BlueEnergyGem
+  - GreenEnergyGem
   layers:
   - Default
   - TransparentFX
